@@ -1,7 +1,25 @@
+
+
 .xAxis {
     font-size: 16;
 }
 
 .yAxis {
     font-size: 16;
+}
+
+.xTitle {
+    font-size: 30;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
+    font-family: 'Cabin Sketch', cursive;
+}
+
+.yTitle {
+    font-size: 30;
+    font-family: 'Cabin Sketch', cursive;
+}
+
+.chartTitle {
+    font-size: 50;
+    font-family: 'Flavors', cursive;
 }

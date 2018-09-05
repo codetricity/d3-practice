@@ -36,7 +36,26 @@ svg.append("g")
         .attr("class", "yAxis");
 
 svg.append("g")
+    .attr("class", "xTitle")
     .append("text")
         .text("Distance")
+        .attr("text-anchor", "middle")
         .attr("x", width/2)
-        .attr("y", height + 60)
+        .attr("y", height + 60);
+
+svg.append("g")
+    .attr("class", "yTitle")
+    .append("text")
+        .text("Number of Dogs")
+        .attr("text-anchor", "middle")
+        .attr("x", -40)
+        .attr("y", height/2)
+        .attr("transform", "rotate(-90, -40," + height/2 + ")");
+
+svg.append("g")
+    .attr("class", "chartTitle")
+    .append("text")
+        .text("Alaskan Dog Sled Expeditions")
+        .attr("text-anchor", "middle")
+        .attr("x", width/2)
+        .attr("y", -50);
