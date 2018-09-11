@@ -285,7 +285,7 @@ function update(){
     }
 
     svg.append("circle")
-    .attr("cx", width/2)
+    .attr("cx", 0)
     .attr("cy", height/2)
     .attr("r", function(){
         var rowOfData = temperatureData[index];
@@ -304,10 +304,11 @@ function update(){
     })
     .attr("fill-opacity", 0)
     .transition(d3.transition().duration(500))
-      .attr("fill-opacity", 1);
+      .attr("fill-opacity", 1)
+      .attr("cx", width/2);
 
     svg.append("text")
-    .attr("x", width/2)
+    .attr("x", 0)
     .attr("y", height * 0.75)
     .attr("class", "temperature")
     .attr("text-anchor", "middle")
@@ -323,7 +324,8 @@ function update(){
     })
     .attr("fill-opacity", 0)
     .transition(d3.transition().duration(500))
-      .attr("fill-opacity", 1);
+      .attr("fill-opacity", 1)
+      .attr("x", width/2);
 
 
 }
