@@ -277,12 +277,23 @@ function update(){
     // on screen
     svg.select("circle").remove();
     svg.selectAll(".temperature").remove();
+    svg.select(".title").remove();
 
     if (index >= temperatureData.length - 1) {
         index = 0;
     } else {
         index++;
     }
+
+    svg.append("text")
+    .attr("x", width/2)
+    .attr("y", "80")
+    .attr("text-anchor", "middle")
+    .attr("class", "title")
+    .attr("fill-opacity", 0)
+    .text("US Cities Low Temperature in Feburary")
+        .transition(d3.transition().duration(1200))
+            .attr("fill-opacity", 1);
 
     svg.append("circle")
     .attr("cx", 0)
@@ -303,7 +314,7 @@ function update(){
         return currentColor;
     })
     .attr("fill-opacity", 0)
-    .transition(d3.transition().duration(500))
+    .transition(d3.transition().duration(1000))
       .attr("fill-opacity", 1)
       .attr("cx", width/2);
 
@@ -323,7 +334,7 @@ function update(){
         return textLabel;
     })
     .attr("fill-opacity", 0)
-    .transition(d3.transition().duration(500))
+    .transition(d3.transition().duration(1000))
       .attr("fill-opacity", 1)
       .attr("x", width/2);
 
