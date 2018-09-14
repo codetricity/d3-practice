@@ -36,20 +36,41 @@ svg.append("g")
     .attr("transform", "translate(0, " +  height + ")")
     .call(xAxis);
 
-var cityName = "honolulu";
+var cities = [
+    "honolulu", "palo alto", "los angeles",
+    "chicago", "boston"];
+
+var cityColor = d3.scaleOrdinal()
+    .domain(cities)
+    .range(d3.schemeSet2);
+    // .range(["orange", "brown", "red", "blue", "purple"]);
 
 
 var dataset = d3.csv("city-month.csv").then(function(data){
-    console.log(data);
     var circles = svg.selectAll("circle")
     .data(data)
-    .enter()
-    .append("circle")
+    .enter();
+    for (var i = 0; i < cities.length; i++) {
+        update(circles, data, i);
+    }
+});
+
+function update(circles, data, index){
+
+    circles.append("g")
+        .append("circle")
         .attr("cx", function(d){
             return monthPosition(d.month);
         })
         .attr("cy", function(d){
-            return yScale(d.honolulu);
+            var cityName = cities[index];
+            return yScale(d[cityName]);
         })
-        .attr("r", "5");
-});
+        .attr("r", "5")
+        .attr("fill", function(){
+            var cityName = cities[index];
+            var color = cityColor(cityName);
+            console.log(color);
+            return color;
+        });
+}
