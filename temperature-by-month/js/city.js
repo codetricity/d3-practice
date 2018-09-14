@@ -21,7 +21,7 @@ monthPosition = d3.scaleLinear()
     .range([0, 800]);
 
 var yScale = d3.scaleLinear()
-    .domain([75, 21])
+    .domain([75, 17])
     .range([ 0, height]);
 
 var xAxis = d3.axisBottom(timeScale)
