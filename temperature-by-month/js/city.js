@@ -12,7 +12,8 @@ var svg = d3.select("body")
             .attr("transform", "translate(" + 
                 margin.left + "," + margin.top + ")");
 
-var timeScale = d3.scaleTime()
+// using this only to show x axis ticks
+var yLabelScale = d3.scaleTime()
     .domain([new Date("January 1, 2018"), new Date("December 1, 2018")])
     .range([0, 800]);
 
@@ -24,7 +25,8 @@ var yScale = d3.scaleLinear()
     .domain([75, 17])
     .range([ 0, height]);
 
-var xAxis = d3.axisBottom(timeScale)
+// %B is the full name of the month
+var xAxis = d3.axisBottom(yLabelScale)
     .tickFormat(d3.timeFormat("%B"));
 
 var yAxis = d3.axisLeft(yScale);
@@ -51,11 +53,11 @@ var dataset = d3.csv("city-month.csv").then(function(data){
     .data(data)
     .enter();
     for (var i = 0; i < cities.length; i++) {
-        update(circles, data, i);
+        drawCity(circles, data, i);
     }
 });
 
-function update(circles, data, index){
+function drawCity(circles, data, index){
 
     circles.append("g")
         .append("circle")
