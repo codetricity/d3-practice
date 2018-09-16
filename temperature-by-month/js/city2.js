@@ -1,10 +1,6 @@
-var cities = [
-    "honolulu", "palo alto", "los angeles",
-    "chicago", "boston"];
-
 d3.csv("city-month.csv").then(function(dataInFunction){
     var cities = getCities(dataInFunction);
-    console.log(cities);
+    // console.log(cities);
 });
 
 function getCities(data) {
@@ -16,6 +12,7 @@ function getCities(data) {
 
     // loop through object
     for (var key in firstLine) {
+        console.log(key);
         arrayOfCities.push(key);
     }
 
