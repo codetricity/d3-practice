@@ -39,13 +39,35 @@ svg.append("g")
     .attr("transform", "translate(0, " +  HEIGHT + ")")
     .call(xAxis);
 
+   
 
 d3.csv("city-month.csv").then(function(dataInFunction){
+
+    var circles = svg.selectAll("circle")
+        .data(dataInFunction)
+        .enter(); 
+        
     var cities = getCities(dataInFunction);
-    console.log(cities);
+
+    drawCircles(circles, cities);
+
+    var cityColor = d3.scaleOrdinal()
+        .domain(cities)
+        // .range(d3.schemeSet2);
+        .range(["orange", "brown", "red", "blue", "purple"]);
+
 });
 
+function drawCircles(circles, cities){
+    circles.append("g")
+        .append("circle")
+            .attr("cx", "100")
+            .attr("cy", "100")
+            .attr("r", "5");
+}
+
 function getCities(data) {
+    console.log("enter into getCities");
     // only use the first object
     var firstLine = data[0];
 
