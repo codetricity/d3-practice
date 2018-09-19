@@ -52,9 +52,9 @@ d3.csv("city-month.csv").then(function(dataInFunction){
 
     var cityColor = d3.scaleOrdinal()
         .domain(cities)
-        // .range(d3.schemeSet2);
-        .range(["orange", "brown", "red", "blue", "purple"]);
-
+        .range(d3.schemeSet2);
+/*         .range(["orange", "brown", "red", "blue", "purple"]);
+ */
     for (var i = 0; i < cities.length; i++) {
         drawCircles(circles, cities, cityColor, i);
     }
