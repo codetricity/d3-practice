@@ -49,21 +49,35 @@ d3.csv("city-month.csv").then(function(dataInFunction){
         
     var cities = getCities(dataInFunction);
 
-    drawCircles(circles, cities);
 
     var cityColor = d3.scaleOrdinal()
         .domain(cities)
         // .range(d3.schemeSet2);
         .range(["orange", "brown", "red", "blue", "purple"]);
 
+    for (var i = 0; i < cities.length; i++) {
+        drawCircles(circles, cities, cityColor, i);
+    }
+
 });
 
-function drawCircles(circles, cities){
+function drawCircles(circles, cities, cityColor, index){
     circles.append("g")
         .append("circle")
-            .attr("cx", "100")
-            .attr("cy", "100")
-            .attr("r", "5");
+            .attr("cx", function(d){
+                return monthPosition(d.month);
+            })
+            .attr("cy", function(d){
+                var cityName = cities[index];
+                return yScale(d[cityName]);
+            })
+            .attr("r", "5")
+            .attr("fill", function(){
+                var cityName = cities[index];
+                var color = cityColor(cityName);
+                console.log(color);
+                return color;
+            });
 }
 
 function getCities(data) {

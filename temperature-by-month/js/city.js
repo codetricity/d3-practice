@@ -53,11 +53,11 @@ var dataset = d3.csv("city-month.csv").then(function(data){
     .data(data)
     .enter();
     for (var i = 0; i < cities.length; i++) {
-        drawCity(circles, data, i);
+        drawCity(circles, i);
     }
 });
 
-function drawCity(circles, data, index){
+function drawCity(circles, index){
 
     circles.append("g")
         .append("circle")
