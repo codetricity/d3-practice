@@ -27,7 +27,17 @@ var rects = svg
             return "rect-" +i;
         });
 
-buttons.on("change", getChange);
+buttons.on("change", changeWidth);
+
+function changeWidth() {
+    rects
+        .transition()
+            .duration(3000)
+            .attr("width", "300")
+        .transition()
+            .duration(3000)
+            .attr("width", "50");
+}
 
 function getChange(){
     console.log("Got change to " + this.value);
