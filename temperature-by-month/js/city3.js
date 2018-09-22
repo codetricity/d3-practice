@@ -83,21 +83,28 @@ function createButtons(cities){
 }
 
 function drawCircles(circles, cityColor){
-    var cityName = this.value;
+    console.log("draw circles");
+    var cityName;
+    if (this.value == undefined) {
+        cityName = "honolulu";
+    } else {
+        console.log(this.value);
+        cityName = this.value;
+    }
+
     circles.append("g")
         .append("circle")
             .attr("cx", function(d){
                 return monthPosition(d.month);
             })
             .attr("cy", function(d){
-                // var cityName = cities[index];
+                console.log(cityName)
                 return yScale(d[cityName]);
             })
             .attr("r", "5")
             .attr("fill", function(){
                 // var cityName = cities[index];
                 var color = cityColor(cityName);
-                console.log(color);
                 return color;
             });
 }
