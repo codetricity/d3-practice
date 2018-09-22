@@ -100,3 +100,67 @@ d3.csv('city-month.csv').then((dataInFunction) => {
   const buttons = d3.selectAll('input');
   buttons.on('change', drawCircles(circles, cityColor));
 });
+
+function createButtons(cities){
+    var form = d3.select("body").append("form");
+
+    for (var index = 0; index < cities.length; index++){
+        form.append("label").append("input")
+        .attr("type", "radio")
+        .attr("name", "city_button")
+        .attr("value", cities[index]);
+    }
+}
+
+function drawCircles(circles, cityColor){
+    console.log("draw circles");
+    var cityName;
+    if (this.value == undefined) {
+        cityName = "honolulu";
+    } else {
+        console.log(this.value);
+        cityName = this.value;
+    }
+
+    circles.append("g")
+        .append("circle")
+            .attr("cx", function(d){
+                return monthPosition(d.month);
+            })
+            .attr("cy", function(d){
+                console.log(cityName)
+                return yScale(d[cityName]);
+            })
+            .attr("r", "5")
+            .attr("fill", function(){
+                // var cityName = cities[index];
+                var color = cityColor(cityName);
+                return color;
+            });
+}
+
+function getCityChange(){
+    var nameOfCity = this.value;
+    return nameOfCity;
+}
+
+function getCities(data) {
+    // only use the first object
+    var firstLine = data[0];
+
+    // create an empty array to hold the names of cities
+    var arrayOfCities = [];
+
+    // loop through object
+    for (var key in firstLine) {
+        console.log(key);
+        arrayOfCities.push(key);
+    }
+
+    // delete first element as the first
+    // element is the month
+
+    arrayOfCities.shift();
+
+    return (arrayOfCities);
+}
